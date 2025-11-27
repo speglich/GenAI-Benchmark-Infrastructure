@@ -1,0 +1,37 @@
+---
+- name: Instalar GenAI-Bench
+  hosts: all
+  become: false
+  vars:
+    venv_path: "{{ ansible_env.HOME }}/.venv"
+
+  tasks:
+    - name: Install Python 3.11 and pip
+      become: true
+      package:
+        name:
+          - python3.11
+          - python3.11-pip
+        state: present
+
+    - name: Create virtualenv in HOME
+      become: false
+      command: python3.11 -m venv {{ venv_path }}
+      args:
+        creates: "{{ venv_path }}/bin/activate"
+
+    - name: Install genai-bench in virtualenv
+      become: false
+      command: "{{ venv_path }}/bin/pip install genai-bench"
+
+    - name: Install pandas and matplotlib in virtualenv
+      become: false
+      command: "{{ venv_path }}/bin/pip install pandas matplotlib"
+
+    - name: Install oci cli
+      become: true
+      package:
+        name:
+        - oraclelinux-developer-release-el9
+        - python39-oci-cli
+        state: present
