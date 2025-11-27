@@ -247,7 +247,7 @@ resource "oci_identity_dynamic_group" "compute_instance_dynamic_group" {
 resource "oci_identity_policy" "instance_policy" {
   provider = oci.home_region
   compartment_id = var.tenancy_ocid
-  name           = "instance-principal-policy"
+  name           = "${local.environment_name}_instance_principal_policy"
   description    = "Permite acesso via Instance Principal"
 
   statements = [
