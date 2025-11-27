@@ -67,8 +67,8 @@ ssh_user = "opc"
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
-   cd benchmark-tf
+   git clone https://github.com/speglich/GenAI-Benchmark-Infrastructure.git
+   cd GenAI-Benchmark-Infrastructure
    ```
 
 2. **Initialize Terraform**:
